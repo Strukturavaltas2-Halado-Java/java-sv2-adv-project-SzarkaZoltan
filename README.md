@@ -1,1 +1,1 @@
-# java-sv2-adv-project-SzarkaZolt-n
+# java-sv2-adv-project-SzarkaZoltan
