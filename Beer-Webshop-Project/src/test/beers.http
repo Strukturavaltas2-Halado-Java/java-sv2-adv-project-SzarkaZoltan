@@ -1,0 +1,163 @@
+POST http://localhost:8080/api/beers/
+Content-Type: application/json
+
+{
+  "name": "IPA"
+}
+
+###
+POST http://localhost:8080/api/beers/
+Content-Type: application/json
+
+{
+  "name": "Beer Sans Corn",
+  "brand": "Beer Sans Brewery",
+  "type": "Corn",
+  "price": "910",
+  "alcohol": "0.129"
+
+}
+
+###
+POST http://localhost:8080/api/beers/
+Content-Type: application/json
+
+{
+  "name": "Beer Sans Corn",
+  "brand": "Beer Sans Brewery",
+  "type": "Corn",
+  "price": 600,
+  "alcohol": 0.2,
+    "ingredients": [
+      {
+        "name": "salt",
+        "ratio": "0.004"
+      },
+      {
+        "name": "sugar",
+        "ratio": "0.027"
+      },
+      {
+        "name": "barley",
+        "ratio": "0"
+      },
+      {
+        "name": "wheat",
+        "ratio": "0"
+      },
+      {
+        "name": "corn",
+        "ratio": "0.221"
+      }
+    ]
+}
+
+
+###
+GET http://localhost:8080/api/beers/
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/beers/122
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/ingredients/
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/beers/38/ingredients/
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/api/beers/347
+
+###
+
+POST http://localhost:8080/api/webshops/
+Content-Type: application/json
+
+{
+  "name": "Cool Beers",
+  "emailAddress": "john.doe@gmail.com",
+  "beers": [
+    {
+      "name": "qwe",
+      "brand": "Beer Sans Brewery",
+      "type": "Corn",
+      "price": "600",
+      "alcohol": "0.2"
+    },
+    {
+      "name": "asd",
+      "brand": "Beer Sans Brewery",
+      "type": "Corn",
+      "price": "700",
+      "alcohol": "0.3"
+    }
+  ]
+}
+
+###
+
+POST http://localhost:8080/api/webshops/
+Content-Type: application/json
+
+{
+  "name": "Bad Beers",
+  "emailAddress": "john.doegmailcom"
+}
+
+###
+
+GET http://localhost:8080/api/webshops/
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/beers/2/ingredients
+Content-Type: application/json
+
+  [
+    {
+      "name": "salt",
+      "ratio": "0.004"
+    },
+    {
+      "name": "sugar",
+      "ratio": "0.027"
+    },
+    {
+      "name": "barley",
+      "ratio": "0"
+    },
+    {
+      "name": "wheat",
+      "ratio": "0"
+    },
+    {
+      "name": "corn",
+      "ratio": "0.221"
+    }
+  ]
+
+
+###
+
+PUT http://localhost:8080/api/beers/305/webshops?webshopId=151
+Content-Type: application/json
+
+###
+
+PUT http://localhost:8080/api/webshops/152/beers?beerId=306
+Content-Type: application/json
+
+###
+
+DELETE http://localhost:8080/api/webshops/177
+
+###
