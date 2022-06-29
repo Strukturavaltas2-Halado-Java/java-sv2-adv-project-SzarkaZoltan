@@ -3,6 +3,7 @@ package beerwebshopproject.service;
 import beerwebshopproject.beer.dto.CreateIngredientCommand;
 import beerwebshopproject.beer.dto.IngredientDto;
 import beerwebshopproject.beer.exception.BeerNotFoundException;
+import beerwebshopproject.beer.exception.IngredientIncludedException;
 import beerwebshopproject.beer.model.Beer;
 import beerwebshopproject.beer.dto.BeerDto;
 import beerwebshopproject.beer.dto.CreateBeerCommand;
@@ -116,13 +117,17 @@ public class BeerWebshopService {
 
     private void deleteBeerAndWebshopConnections(long id) {
         Webshop webshop = findWebshopById(id);
-        webshop.getBeers().forEach(b->b.removeWebshop(webshop));
+        webshop.getBeers().forEach(b -> b.removeWebshop(webshop));
         webshop.removeAllBeers();
     }
 
     public BeerDto addOneIngredientsById(long id, CreateIngredientCommand command) {
         Beer beer = findBeerById(id);
-        beer.addIngredients(new Ingredient(command.getName(), command.getRatio()));
+        Ingredient ingredient = new Ingredient(command.getName(), command.getRatio());
+        if (beer.getIngredients().contains(ingredient)) {
+            throw new IngredientIncludedException(id, command.getName());
+        }
+        beer.addIngredients(ingredient);
         return modelMapper.map(beer, BeerDto.class);
     }
 
@@ -142,7 +147,7 @@ public class BeerWebshopService {
     public List<IngredientDto> getIngredientsByBeerId(long id) {
         Beer beer = findBeerById(id);
         return beer.getIngredients().stream()
-                .map(b->modelMapper.map(b,IngredientDto.class))
+                .map(b -> modelMapper.map(b, IngredientDto.class))
                 .collect(Collectors.toList());
     }
 

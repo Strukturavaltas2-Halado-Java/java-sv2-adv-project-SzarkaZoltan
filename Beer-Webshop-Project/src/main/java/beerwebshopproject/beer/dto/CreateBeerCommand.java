@@ -28,6 +28,27 @@ public class CreateBeerCommand {
     @PositiveOrZero(message = "alcohol ratio can not be negative")
     @Schema(description = "alcohol of the beer", example = "0.129")
     private double alcohol;
-    @Schema(description = "ingredients of the beer", example = "[]")
+    @Schema(description = "ingredients of the beer", example = "[\n" +
+            "    {\n" +
+            "      \"name\": \"salt\",\n" +
+            "      \"ratio\": \"0.004\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"sugar\",\n" +
+            "      \"ratio\": \"0.027\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"barley\",\n" +
+            "      \"ratio\": \"0\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"wheat\",\n" +
+            "      \"ratio\": \"0\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"name\": \"corn\",\n" +
+            "      \"ratio\": \"0.221\"\n" +
+            "    }\n" +
+            "  ]")
     private List<CreateIngredientCommand> ingredients = new ArrayList<>();
 }

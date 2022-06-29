@@ -26,21 +26,25 @@ public class BeerController {
     private BeerWebshopService beerService;
 
     @GetMapping
+    @Operation(summary = "get all beers")
     public List<BeerDto> getAllBeers(@RequestParam Optional<String> brand, @RequestParam Optional<String> type) {
         return beerService.getAllBeers(brand,type);
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "get beer by id")
     public BeerDto getBeerById(@PathVariable("id") long id) {
         return beerService.getBeerById(id);
     }
 
     @GetMapping("/brands")
+    @Operation(summary = "get all beer brands")
     public Set<String> getBeerBrands(){
         return beerService.getAllBrands();
     }
 
     @GetMapping("/{id}/ingredients")
+    @Operation(summary = "get all ingredients of a beer by id")
     public List<IngredientDto> getIngredientsByBeerId(@PathVariable("id") long id){
         return beerService.getIngredientsByBeerId(id);
     }
@@ -54,16 +58,19 @@ public class BeerController {
     }
 
     @PostMapping("/{id}/ingredients")
+    @Operation(summary = "creates an ingredient and assigns to a beer by id")
     public BeerDto addOneIngredientById(@PathVariable("id") long id, @Valid @RequestBody CreateIngredientCommand ingredientCommands) {
         return beerService.addOneIngredientsById(id, ingredientCommands);
     }
 
     @PutMapping("/{id}/webshops")
+    @Operation(summary = "assings a webshop to a beer by ids")
     public BeerDto updateBeerByIdWithWebshop(@PathVariable("id") long beerId,@RequestParam long webshopId) {
         return beerService.updateBeerByIdWithWebshop(beerId, webshopId);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "delete beer by id")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBeerById(@PathVariable("id") long id) {
         beerService.deleteBeerById(id);

@@ -17,6 +17,7 @@ public class CreateIngredientCommand {
     @NotBlank(message = "name can not be blank")
     private String name;
     @PositiveOrZero
+    @Schema(description = "ratio of the ingredient", example = "0.015")
     @DecimalMax(value = "0.3", message = "ratio can not be more than 0.3")
     private double ratio;
 }
